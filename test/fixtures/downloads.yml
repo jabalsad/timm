@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: MyString
+  bytes_downloaded: 1
+  movie_id: 
+  agent_id: 
+
+two:
+  status: MyString
+  bytes_downloaded: 1
+  movie_id: 
+  agent_id: 
