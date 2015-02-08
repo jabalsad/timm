@@ -1,0 +1,21 @@
+.page-header
+  = link_to new_movie_path, :class => 'btn btn-primary' do 
+    span.glyphicon.glyphicon-plus
+    |  New Movie
+  h1
+    | Listing movies
+
+.table-responsive
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th Name
+        th
+        th
+    tbody
+      - @movies.each do |movie|
+        tr
+          td= link_to movie.name, movie
+          td
+            = link_to 'Edit', edit_movie_path(movie) 
+            = link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } 
