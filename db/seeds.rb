@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+#
+
+Movie.create(name: "Test movie", path: "/some/path", imdb: "tt12345678", size: 1)
+Agent.create(name: "jaco-agent", last_checkin_time: Time.now)

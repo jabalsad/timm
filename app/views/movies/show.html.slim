@@ -5,6 +5,6 @@
   = link_to edit_movie_path(@movie), :class => 'btn btn-primary' do 
     span.glyphicon.glyphicon-pencil
     |  Edit 
-  h1
-    | Show movie
+  h1= @movie.name
 dl.dl-horizontal
+

@@ -15,21 +15,17 @@ ActiveRecord::Schema.define(version: 20150207172354) do
 
   create_table "agents", force: :cascade do |t|
     t.string   "name"
-    t.integer  "download_id"
     t.datetime "last_checkin_time"
-    t.string   "status"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end
-
-  add_index "agents", ["download_id"], name: "index_agents_on_download_id"
 
   create_table "downloads", force: :cascade do |t|
     t.string   "status"
     t.integer  "bytes_downloaded"
     t.integer  "priority"
-    t.integer  "movie_id"
     t.integer  "agent_id"
+    t.integer  "movie_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end

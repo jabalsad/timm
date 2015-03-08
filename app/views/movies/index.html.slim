@@ -1,21 +1,19 @@
-.page-header
-  = link_to new_movie_path, :class => 'btn btn-primary' do 
-    span.glyphicon.glyphicon-plus
-    |  New Movie
-  h1
-    | Listing movies
-
 .table-responsive
-  table.table.table-striped.table-bordered.table-hover
+  table.table.table-striped.table-hover.table-condensed
     thead
       tr
         th Name
-        th
-        th
+        th Year
+        th Added at
+        th Send to Agent
     tbody
       - @movies.each do |movie|
         tr
           td= link_to movie.name, movie
           td
-            = link_to 'Edit', edit_movie_path(movie) 
-            = link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } 
+          td= movie.created_at
+          td
+            = form_tag({controller: "movies", action: "enqueue"}, method: "post", class: "form-inline") do
+              = hidden_field(:movie, :id, value: movie.id)
+              = select("agent", "id", Agent.all.map {|a| [a.name, a.id]}, {}, "class" => "form-control input-sm")
+              button.btn.btn-primary.btn-sm Send

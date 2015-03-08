@@ -21,6 +21,13 @@ class MoviesController < ApplicationController
   def edit
   end
 
+  def enqueue
+    @movie = Movie.find(movie_params.fetch(:id))
+    @agent = Agent.find(agent_params.fetch(:id))
+    Download.create(movie: @movie, agent: @agent)
+    redirect_to @agent, notice: "Download successfully added to agent."
+  end
+
   # POST /movies
   # POST /movies.json
   def create
@@ -70,5 +77,9 @@ class MoviesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def movie_params
       params[:movie]
+    end
+
+    def agent_params
+      params[:agent]
     end
 end

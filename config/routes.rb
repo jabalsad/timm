@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
+  resources :agents
+
   get 'welcome/index'
 
   root 'welcome#index'
 
-  resources :movies
+  resources :movies do
+    collection do
+      post 'enqueue'
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

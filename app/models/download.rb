@@ -1,4 +1,4 @@
 class Download < ActiveRecord::Base
   belongs_to :agent
-  has_one :movie
+  belongs_to :movie
 end
