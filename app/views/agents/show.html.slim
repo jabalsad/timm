@@ -6,7 +6,9 @@ dl.dl-horizontal
     thead
       tr
         th Movie
+        th Priority
     tbody
       - @agent.downloads.each do |download|
         tr
           td= link_to download.movie.name, download.movie
+          td= download.priority

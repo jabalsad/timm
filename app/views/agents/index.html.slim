@@ -3,7 +3,9 @@
     thead
       tr
         th Name
+        th Last Checkin
     tbody
       - @agents.each do |agent|
         tr
           td= link_to agent.name, agent
+          td= agent.last_checkin_time

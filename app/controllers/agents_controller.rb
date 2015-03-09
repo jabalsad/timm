@@ -1,5 +1,5 @@
 class AgentsController < ApplicationController
-  before_action :set_agent, only: [:show, :edit, :update, :destroy]
+  before_action :set_agent, only: [:show, :edit, :update, :destroy, :checkin]
 
   # GET /agents
   # GET /agents.json
@@ -10,6 +10,9 @@ class AgentsController < ApplicationController
   # GET /agents/1
   # GET /agents/1.json
   def show
+    respond_to do |format|
+      format.json { render json: @agent.as_json }
+    end
   end
 
   # GET /agents/new
@@ -34,6 +37,15 @@ class AgentsController < ApplicationController
         format.html { render :new }
         format.json { render json: @agent.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def checkin
+    @agent.last_checkin_time = Time.now
+    @agent.save
+    respond_to do |format|
+      format.json { render :show, location: @agent }
+      format.html { render :show }
     end
   end
 

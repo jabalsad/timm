@@ -24,7 +24,8 @@ class MoviesController < ApplicationController
   def enqueue
     @movie = Movie.find(movie_params.fetch(:id))
     @agent = Agent.find(agent_params.fetch(:id))
-    Download.create(movie: @movie, agent: @agent)
+    priority = (Download.where(agent: @agent).maximum(:priority) || 0) + 1
+    Download.create(movie: @movie, agent: @agent, priority: priority)
     redirect_to @agent, notice: "Download successfully added to agent."
   end
 
